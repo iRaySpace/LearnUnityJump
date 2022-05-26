@@ -372,6 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 92308563}
   cameraTransform: {fileID: 519420032}
+  platformTransform: {fileID: 1894528356}
   scoreText: {fileID: 73240518}
 --- !u!4 &245057589
 Transform:

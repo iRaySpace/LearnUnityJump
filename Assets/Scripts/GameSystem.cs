@@ -7,6 +7,7 @@ public class GameSystem : MonoBehaviour
 {
     public Transform playerTransform;
     public Transform cameraTransform;
+    public Transform platformTransform;
     public Text scoreText;
 
     public static int score;
@@ -29,5 +30,21 @@ public class GameSystem : MonoBehaviour
 
         maxPlayerY = Mathf.Max(maxPlayerY, playerTransform.position.y);
         cameraTransform.position = new Vector3(cameraTransform.position.x, maxPlayerY, cameraTransform.position.z);
+
+        float lastPlatformY = 0f;
+        foreach (Transform child in platformTransform)
+        {
+            lastPlatformY = Mathf.Max(lastPlatformY, child.position.y);
+        }
+
+        foreach (Transform child in platformTransform)
+        {
+            if (cameraTransform.position.y > (child.position.y + 6f))
+            {
+                float newX = Random.Range(-5.0f, 5.0f);
+                Vector3 newPosition = new Vector3(newX, lastPlatformY + 6f, 0);
+                child.position = newPosition;
+            }
+        }
     }
 }
