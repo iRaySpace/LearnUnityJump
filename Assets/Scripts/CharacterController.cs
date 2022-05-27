@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
+
+    [SerializeField]
+    private UnityEvent jumpTrigger;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -51,6 +55,7 @@ public class CharacterController : MonoBehaviour
         {
             velocityY = jumpForce;
             hasJumped = true;
+            jumpTrigger.Invoke();
         }
 
         rb.velocity = new Vector2(velocityX, velocityY);
