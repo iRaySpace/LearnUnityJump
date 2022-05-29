@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour
 {
@@ -45,6 +46,11 @@ public class GameSystem : MonoBehaviour
                 Vector3 newPosition = new Vector3(newX, lastPlatformY + 6f, 0);
                 child.position = newPosition;
             }
+        }
+
+        if (cameraTransform.position.y > (playerTransform.position.y + 6f))
+        {
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }
