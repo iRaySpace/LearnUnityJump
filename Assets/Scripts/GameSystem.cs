@@ -11,9 +11,10 @@ public class GameSystem : MonoBehaviour
     public Transform platformTransform;
     public Text scoreText;
 
-    public static int score;
-
+    private int score;
     private float maxPlayerY;
+
+    public static int highestScore = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,9 @@ public class GameSystem : MonoBehaviour
     void Update()
     {
         int playerY = Mathf.FloorToInt(playerTransform.position.y);
+
         score = Mathf.Max(score, playerY);
+        highestScore = Mathf.Max(highestScore, score);
         scoreText.text = score.ToString();
 
         maxPlayerY = Mathf.Max(maxPlayerY, playerTransform.position.y);
